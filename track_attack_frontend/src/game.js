@@ -36,7 +36,22 @@ class Game {
                 
         })
 
-        
+        this.renderGameBoardSounds()
+    
+        const deleteGameButton = document.createElement("input")
+        deleteGameButton.setAttribute("class","submit-btn")
+        deleteGameButton.setAttribute("id", "game-delete-btn")
+        deleteGameButton.setAttribute("type", "submit")
+        deleteGameButton.setAttribute("value", "Delete This Game")
+        document.getElementById("shown-game").appendChild(deleteGameButton)
+        deleteGameButton.addEventListener('click', (e)=>{
+            this.deleteGame(e)
+        })
+
+    } //end of rendergamedisplay
+
+
+    renderGameBoardSounds(){
         const characterHealButtons = document.querySelectorAll(".counter-btn-heal")
         characterHealButtons.forEach(button => {
             let buttonId = button.id.slice(-1) //string id number
@@ -72,18 +87,7 @@ class Game {
             })
         })
 
-
-       const deleteGameButton = document.createElement("input")
-        deleteGameButton.setAttribute("class","submit-btn")
-        deleteGameButton.setAttribute("id", "game-delete-btn")
-        deleteGameButton.setAttribute("type", "submit")
-        deleteGameButton.setAttribute("value", "Delete This Game")
-        document.getElementById("shown-game").appendChild(deleteGameButton)
-        deleteGameButton.addEventListener('click', (e)=>{
-            this.deleteGame(e)
-        })
-
-    } //end of rendergamedisplay
+    }
 
 
     deleteGame(e){
@@ -136,6 +140,5 @@ class Game {
     winnerSound.play()
    }
     
-
     
 }
