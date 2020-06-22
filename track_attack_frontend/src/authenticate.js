@@ -55,7 +55,6 @@ class Authenticate {
     
             configAdapter.post(`/users`, configAdapter.setPostObj(signupData))
             .then(function(json) {
-                console.log(json);
                 const alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
                   alertButton.setAttribute("class", "alert-wrapper")
