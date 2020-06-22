@@ -17,10 +17,10 @@ class User {
         document.getElementById("login-form").style.display="none"
 
         document.getElementById("logged-in-display").style.display = "block"
-        let weclcomeMessage = document.getElementById("welcome-user")
+        const weclcomeMessage = document.getElementById("welcome-user")
             weclcomeMessage.innerHTML = `Welcome ${this.username}!    `
 
-        let logoutButton = document.createElement("button")
+        const logoutButton = document.createElement("button")
             logoutButton.setAttribute("id", "logout-btn")
             logoutButton.setAttribute("type", "button")
             logoutButton.innerText = `Logout!`
@@ -31,7 +31,7 @@ class User {
                 this.logoutUser()
             })
 
-        let gameTitle = document.getElementById("game-title")
+        const gameTitle = document.getElementById("game-title")
         gameTitle.innerText = `Select a game from the select bar, then click show game to display game below.`
         
         document.getElementById("seeded-images").style.display="none"
@@ -68,7 +68,7 @@ class User {
 
     renderCreateGameForm(){
         this.charactersAdapter.getAllCharacters()
-        let createGameButton = document.getElementById("create-game-form")
+        const createGameButton = document.getElementById("create-game-form")
             createGameButton.addEventListener('submit', function(e) {
                 e.preventDefault()
                 User.current.createUserGame()})
@@ -76,15 +76,15 @@ class User {
     
 
     createUserGame(){
-        let newGameName = document.getElementById("create-game-name").value
+        const newGameName = document.getElementById("create-game-name").value
         this.gameAdapter.postGame(newGameName, this.id)
     
     }
 
     logoutUser(){
            
-        let weclcomeMessage = document.getElementById("welcome-user")
-        let logoutButton = document.getElementById("logout-btn")
+        const weclcomeMessage = document.getElementById("welcome-user")
+        const logoutButton = document.getElementById("logout-btn")
       
         configAdapter.post(`/logout`, configAdapter.setPostObj())
         .then(function(json) {
@@ -94,7 +94,7 @@ class User {
             document.getElementById("login-form").reset()
             document.getElementById("login-form").style.display="block"
             document.getElementById("seeded-images").style.display="block"
-            
+
             document.getElementById("list-user-games").innerHTML = ""
             document.getElementById("logged-in-display").style.display="none"
             document.getElementById("create-game-characters").innerHTML = ""

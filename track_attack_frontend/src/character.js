@@ -9,7 +9,7 @@ class Character {
     }
 
     renderCharacterCheckbox(){
-        let characterOption = `
+        const characterOption = `
                 <label>
                     <input type="checkbox" id="${this.id}-option" name="${this.id}">
                     ${this.description}
