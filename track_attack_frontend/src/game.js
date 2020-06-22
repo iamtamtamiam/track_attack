@@ -13,12 +13,12 @@ class Game {
         document.getElementById("shown-game").innerHTML = ""
         document.getElementById("container-games").innerHTML = ""
 
-        let gameTitle = document.getElementById("game-title")
+        const gameTitle = document.getElementById("game-title")
             gameTitle.innerText = `Showing Game: ${this.name}`
         
         
         this.charaters.forEach(character => {
-            let characterHtml = `
+            const characterHtml = `
                 <div class="grid-item-game">
                 
                 <input type="text" id="game-name" name="game_name" placeholder="Enter Player Name.">
@@ -31,13 +31,13 @@ class Game {
                 `
             document.getElementById("container-games").innerHTML += characterHtml
 
-            let CreateGameForm = document.getElementById("create-game-form")
+            const CreateGameForm = document.getElementById("create-game-form")
             CreateGameForm.reset()
                 
         })
 
         
-        let characterHealButtons = document.querySelectorAll(".counter-btn-heal")
+        const characterHealButtons = document.querySelectorAll(".counter-btn-heal")
         characterHealButtons.forEach(button => {
             let buttonId = button.id.slice(-1) //string id number
             button.addEventListener('click', (e) => {
@@ -49,7 +49,7 @@ class Game {
             })
         })
 
-        let characterAttackButtons = document.querySelectorAll(".counter-btn-attack")
+        const characterAttackButtons = document.querySelectorAll(".counter-btn-attack")
         characterAttackButtons.forEach(button => {
             let buttonIdA = button.id.slice(-1) //string id number
             button.addEventListener('click', (e) => {
@@ -73,14 +73,12 @@ class Game {
         })
 
 
-       let deleteGameButton = document.createElement("input")
-       deleteGameButton.setAttribute("class","submit-btn")
-       deleteGameButton.setAttribute("id", "game-delete-btn")
-       deleteGameButton.setAttribute("type", "submit")
-       deleteGameButton.setAttribute("value", "Delete This Game")
-       document.getElementById("shown-game").appendChild(deleteGameButton)
-
-
+       const deleteGameButton = document.createElement("input")
+        deleteGameButton.setAttribute("class","submit-btn")
+        deleteGameButton.setAttribute("id", "game-delete-btn")
+        deleteGameButton.setAttribute("type", "submit")
+        deleteGameButton.setAttribute("value", "Delete This Game")
+        document.getElementById("shown-game").appendChild(deleteGameButton)
         deleteGameButton.addEventListener('click', (e)=>{
             this.deleteGame(e)
         })
@@ -113,10 +111,10 @@ class Game {
         User.current.games.splice(indexOfGameToDelete, 1)
         console.log(User.current.games)
 
-        let gameTitle = document.getElementById("game-title")
+        const gameTitle = document.getElementById("game-title")
         gameTitle.innerText = ""
 
-        let buttonToRemove = document.getElementById("shown-game")
+        const buttonToRemove = document.getElementById("shown-game")
         buttonToRemove.innerHTML = ""
 
         User.current.getUserGames()
@@ -124,25 +122,20 @@ class Game {
     }
 
    playAttackSound(){
-       let attackSound = new Audio("../track_attack_frontend/css/sounds/zapsplat_laser.mp3")
+       const attackSound = new Audio("../track_attack_frontend/css/sounds/zapsplat_laser.mp3")
        attackSound.play()
    }
 
    playHealSound(){
-    let healSound = new Audio("../track_attack_frontend/css/sounds/zapsplat_ascend.mp3")
+    const healSound = new Audio("../track_attack_frontend/css/sounds/zapsplat_ascend.mp3")
     healSound.play()
    }
 
    playWinnerSound(){
-    let winnerSound = new Audio("../track_attack_frontend/css/sounds/zapslpat_arcade.mp3")
+    const winnerSound = new Audio("../track_attack_frontend/css/sounds/zapslpat_arcade.mp3")
     winnerSound.play()
    }
     
-
-    clickingWinner(e){
-        e.preventDefault()
-        console.log("clicked")
-    }
 
     
 }
