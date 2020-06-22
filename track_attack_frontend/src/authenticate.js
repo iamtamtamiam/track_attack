@@ -61,21 +61,10 @@ class Authenticate {
             let signupData = {username: inputUsername, password: inputPassword}
             console.log(signupData)
         
-            // let configObj = {
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //       "Accept": "application/json"
-            //     },
-            //     body: JSON.stringify(signupData)
-            // };
-            //configAdapter.setPostObj(signupData)
+            
             configAdapter.post(`/users`, configAdapter.setPostObj(signupData) )
 
-            // fetch("http://localhost:3000/users", configObj)
-            // .then(function(response) {
-            //     return response.json();
-            // })
+           
             .then(function(json) {
                 console.log(json);
                 var alertButton = document.getElementById("alert-div");
