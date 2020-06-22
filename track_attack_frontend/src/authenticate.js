@@ -21,7 +21,7 @@ class Authenticate {
             configAdapter.post(`/login`, configAdapter.setPostObj(loginData))
             .then(function(json) {
 
-                var alertButton = document.getElementById("alert-div");
+                const alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
                   alertButton.setAttribute("class", "alert-wrapper")
                   alertButton.innerText = `Login Failed. Please try again.`
@@ -56,10 +56,10 @@ class Authenticate {
             configAdapter.post(`/users`, configAdapter.setPostObj(signupData))
             .then(function(json) {
                 console.log(json);
-                var alertButton = document.getElementById("alert-div");
+                const alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
                   alertButton.setAttribute("class", "alert-wrapper")
-                  alertButton.innerText = `Please try again. ${Object.values(json.main)}`
+                  alertButton.innerText = `Sign Up Failed. ${Object.values(json.main)}`
                 }
                 else {
                     const signedUpUser = new User(json)
