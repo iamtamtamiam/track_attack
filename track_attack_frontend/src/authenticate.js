@@ -69,7 +69,7 @@ class Authenticate {
             //     },
             //     body: JSON.stringify(signupData)
             // };
-            configAdapter.setPostObj(signupData)
+            //configAdapter.setPostObj(signupData)
             configAdapter.post(`/users`, configAdapter.setPostObj(signupData) )
 
             // fetch("http://localhost:3000/users", configObj)
@@ -81,7 +81,7 @@ class Authenticate {
                 var alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
                   alertButton.setAttribute("class", "alert-wrapper")
-                  alertButton.innerText = `Please try again. ${json["main"]["username"][0]}`
+                  alertButton.innerText = `Please try again. ${Object.values(json.main)}`
                 }
                 else {
                     const signedUpUser = new User(json)
