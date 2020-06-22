@@ -20,8 +20,8 @@ class GameAdapter {
             else {
                 let newGame = new Game(json)
 
-                let grabbedHtml = document.querySelectorAll(`[id*="-option"]`)
-                newGame.selectionAdapter.getCheckedCharacters(newGame.id, grabbedHtml) //nodelist
+                let characterOptions = document.querySelectorAll(`[id*="-option"]`)
+                newGame.selectionAdapter.getCheckedCharacters(newGame.id, characterOptions) //nodelist
     
                 User.current.games.push(newGame)
                 User.current.getUserGames()
