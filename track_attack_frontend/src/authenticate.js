@@ -1,13 +1,10 @@
-//buttton listeners, route, fetch, post 
-//render failure? if else
+
 
 class Authenticate {
+   
 
     login(){
         const loginButton = document.getElementById("login-btn")
-        //loginButton.addEventListener('click', (e) => loginFormHandler(e))
-
-        ///function loginFormHandler(e) {
         
         loginButton.addEventListener('click', (e) => {
             e.preventDefault()
@@ -19,27 +16,15 @@ class Authenticate {
 
 
         function postUser(inputUsername, inputPassword){
-            console.log(inputUsername, inputPassword) //testing input
+            console.log(inputUsername, inputPassword)
             let loginData = {username: inputUsername, password: inputPassword}
             console.log(loginData)
         
-            // let configObj = {
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //       "Accept": "application/json"
-            //     },
-            //     body: JSON.stringify(loginData)
-            // };
             
-            // fetch("http://localhost:3000/login", configObj)
-            // .then(function(response) {
-            //     return response.json();
-            // })
             configAdapter.post(`/login`, configAdapter.setPostObj(loginData))
             .then(function(json) {
                 console.log(json);
-                   //  localStorage.setItem("user", JSON.stringify(response.data)); 
+
                 var alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
                   alertButton.setAttribute("class", "alert-wrapper")
@@ -53,7 +38,7 @@ class Authenticate {
                     console.log(User.current)
                     loggedInUser.renderUserWelcomeMessage()
                 }
-                //login and then refresh the page so that the login faild doesnt show     
+            
             });
         
         }
