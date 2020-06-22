@@ -85,18 +85,8 @@ class User {
            
         let weclcomeMessage = document.getElementById("welcome-user")
         let logoutButton = document.getElementById("logout-btn")
-        let configObj = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify()
-        };
-        fetch("http://localhost:3000/logout", configObj)
-        .then(function(response) {
-            return response.json();
-        })
+      
+        configAdapter.post(`/logout`, configAdapter.setPostObj())
         .then(function(json) {
         
             weclcomeMessage.innerText = `You have been logged out.`
@@ -104,15 +94,11 @@ class User {
             document.getElementById("login-form").reset()
             document.getElementById("login-form").style.display="block"
             document.getElementById("seeded-images").style.display="block"
-           
             
             document.getElementById("list-user-games").innerHTML = ""
             document.getElementById("logged-in-display").style.display="none"
             document.getElementById("create-game-characters").innerHTML = ""
             document.getElementById("container-games").innerHTML = ""
-
-                     
-
         });
         User.current =""
         location.reload()
