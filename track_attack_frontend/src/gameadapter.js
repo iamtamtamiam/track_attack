@@ -26,12 +26,8 @@ class GameAdapter {
                 User.current.games.push(newGame)
                 User.current.getUserGames()
             }
-
         });
-        
     } 
 
-
-   
 
 }

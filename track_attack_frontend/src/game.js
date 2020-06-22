@@ -2,23 +2,21 @@ class Game {
     constructor(gameJson){
         this.id = gameJson["data"]["id"]
         this.user_id = gameJson["data"]["attributes"]["user"]["id"]
-        //this.user = gameJson["game"]["user"]
         this.name = gameJson["data"]["attributes"]["name"]
         this.selections = gameJson["data"]["attributes"]["selections"]
         this.charaters = gameJson["data"]["attributes"]["characters"]
         this.selectionAdapter = new SelectionAdapter
     }
 
-    
     renderGameDisplay(){
-        //reset the shown Game Box:
+    
         document.getElementById("shown-game").innerHTML = ""
-
-        //need hide/reset the create new game
-        let gameTitle = document.getElementById("game-title")
-        gameTitle.innerText = `Showing Game: ${this.name}`
-        //* this.gameCharacterOptions()
         document.getElementById("container-games").innerHTML = ""
+
+        let gameTitle = document.getElementById("game-title")
+            gameTitle.innerText = `Showing Game: ${this.name}`
+        
+        
         this.charaters.forEach(character => {
             let characterHtml = `
                 <div class="grid-item-game">
@@ -35,14 +33,11 @@ class Game {
 
             let CreateGameForm = document.getElementById("create-game-form")
             CreateGameForm.reset()
-
-            //this.getUserGames()
                 
         })
 
         
         let characterHealButtons = document.querySelectorAll(".counter-btn-heal")
-        //console.log(characterHealButtons)
         characterHealButtons.forEach(button => {
             let buttonId = button.id.slice(-1) //string id number
             button.addEventListener('click', (e) => {
@@ -55,7 +50,6 @@ class Game {
         })
 
         let characterAttackButtons = document.querySelectorAll(".counter-btn-attack")
-        //console.log(characterAttackButtons)
         characterAttackButtons.forEach(button => {
             let buttonIdA = button.id.slice(-1) //string id number
             button.addEventListener('click', (e) => {
@@ -70,16 +64,11 @@ class Game {
         const characterImages = document.querySelectorAll(".grid-container-games .grid-item-game img")
         characterImages.forEach(character => {
             character.addEventListener("dblclick", (e) =>{
-                //this.clickingWinner(e)
                 e.preventDefault()
                 this.playWinnerSound()
                 character.parentElement.innerHTML += `
                 <img id="trophy" name="trophy" src="https://publicdomainvectors.org/photos/trophy.png">
                 `
-                
-
-
-
             })
         })
 
@@ -94,7 +83,6 @@ class Game {
 
         deleteGameButton.addEventListener('click', (e)=>{
             this.deleteGame(e)
-            //User.current.fetchGamesAfterDeletion()
         })
 
     } //end of rendergamedisplay
@@ -115,15 +103,11 @@ class Game {
         .then(function(response) {
             return response.json();
         })
-        //configAdapter.post(`/games/`+ `${this.id}`, configObj)
         .then(function(json) {
             console.log(json);})
 
         document.getElementById("container-games").innerHTML = ""
-        //document.getElementById("list-user-games").options[this.id]
-        //User.current.getUserGames()
-        //need to either remove selection or redo the fetch..
-        //User.current.fetchGamesAfterDeletion()
+        
         let gameToDelete = User.current.games.find(element => element.id == this.id)
         let indexOfGameToDelete = User.current.games.indexOf(gameToDelete)
         User.current.games.splice(indexOfGameToDelete, 1)
@@ -136,14 +120,11 @@ class Game {
         buttonToRemove.innerHTML = ""
 
         User.current.getUserGames()
-        // NEED to clear game name displayed
 
     }
 
    playAttackSound(){
-       //var attackSound = new Audio("./css/sounds/zapslpat_laser.mp3")
        let attackSound = new Audio("../track_attack_frontend/css/sounds/zapsplat_laser.mp3")
-       //attackSound.currentTime = 0;
        attackSound.play()
    }
 
@@ -157,8 +138,6 @@ class Game {
     winnerSound.play()
    }
     
-    //clear game dashboard
-    //get user games again...
 
     clickingWinner(e){
         e.preventDefault()
