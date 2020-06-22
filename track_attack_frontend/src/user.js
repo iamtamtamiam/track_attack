@@ -10,7 +10,6 @@ class User {
 
 
     renderUserWelcomeMessage(){
-        console.log(this)
         const alertButton = document.getElementById("alert-div");
             alertButton.setAttribute("class", "hidden")
             alertButton.innerText = "" 
@@ -40,52 +39,7 @@ class User {
         this.getUserGames()
         this.renderCreateGameForm()
 
-        
-        
     } // end of renderWelcome 
-
-
-   logoutUser(){
-            console.log("logging out....did it work?") 
-            let weclcomeMessage = document.getElementById("welcome-user")
-            let logoutButton = document.getElementById("logout-btn")
-            let configObj = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "application/json"
-                },
-                body: JSON.stringify()
-            };
-            fetch("http://localhost:3000/logout", configObj)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(json) {
-                console.log(json);
-                weclcomeMessage.innerText = `You have been logged out.`
-                logoutButton.remove()
-                document.getElementById("login-form").reset()
-                document.getElementById("login-form").style.display="block"
-                document.getElementById("seeded-images").style.display="block"
-               
-                console.log(User.current) // do i need to clear?
-                document.getElementById("list-user-games").innerHTML = ""
-                document.getElementById("logged-in-display").style.display="none"
-                document.getElementById("create-game-characters").innerHTML = ""
-                document.getElementById("container-games").innerHTML = ""
-
-               
-
-    
-                
-
-            });
-            User.current =""
-            console.log(this)
-            console.log(User.current)
-            location.reload()
-        } //end of logout
 
 
 
@@ -98,8 +52,6 @@ class User {
                     <option value="${game.id}">${game.name}</option>
                 `
         })
-        console.log(this) //user
-        
 
         const showGameButton = document.getElementById("game-select-btn")
          showGameButton.addEventListener('click', (e) =>{
@@ -107,7 +59,6 @@ class User {
              const selectionValues = document.querySelectorAll("#list-user-games > option")
              selectionValues.forEach(option => {
                  if (option.selected === true){
-                     console.log(option)
                      this.gameAdapter.getIdForRender(option.value)
                  }
              })
@@ -129,5 +80,43 @@ class User {
         this.gameAdapter.postGame(newGameName, this.id)
     
     }
+
+    logoutUser(){
+           
+        let weclcomeMessage = document.getElementById("welcome-user")
+        let logoutButton = document.getElementById("logout-btn")
+        let configObj = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify()
+        };
+        fetch("http://localhost:3000/logout", configObj)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(json) {
+        
+            weclcomeMessage.innerText = `You have been logged out.`
+            logoutButton.remove()
+            document.getElementById("login-form").reset()
+            document.getElementById("login-form").style.display="block"
+            document.getElementById("seeded-images").style.display="block"
+           
+            
+            document.getElementById("list-user-games").innerHTML = ""
+            document.getElementById("logged-in-display").style.display="none"
+            document.getElementById("create-game-characters").innerHTML = ""
+            document.getElementById("container-games").innerHTML = ""
+
+                     
+
+        });
+        User.current =""
+        location.reload()
+    } //end of logout
+
 
 }
