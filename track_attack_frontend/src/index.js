@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //testing  
-console.log("testing...in index.js")
-
 
 //testing rails and js connection with fetch ; added http://
 //* const BACKEND_URL = 'http://localhost:3000';

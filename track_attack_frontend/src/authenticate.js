@@ -16,14 +16,10 @@ class Authenticate {
 
 
         function postUser(inputUsername, inputPassword){
-            console.log(inputUsername, inputPassword)
             let loginData = {username: inputUsername, password: inputPassword}
-            console.log(loginData)
-        
-            
+           
             configAdapter.post(`/login`, configAdapter.setPostObj(loginData))
             .then(function(json) {
-                console.log(json);
 
                 var alertButton = document.getElementById("alert-div");
                 if (json.status === 401) {
@@ -33,9 +29,7 @@ class Authenticate {
                 else {
         
                     let loggedInUser = new User(json)
-                    console.log(loggedInUser)
                     User.current = loggedInUser
-                    console.log(User.current)
                     loggedInUser.renderUserWelcomeMessage()
                 }
             
@@ -57,14 +51,9 @@ class Authenticate {
         })
 
         function signupUser(inputUsername, inputPassword){
-            console.log(inputUsername, inputPassword) //testing input
             let signupData = {username: inputUsername, password: inputPassword}
-            console.log(signupData)
-        
-            
-            configAdapter.post(`/users`, configAdapter.setPostObj(signupData) )
-
-           
+    
+            configAdapter.post(`/users`, configAdapter.setPostObj(signupData))
             .then(function(json) {
                 console.log(json);
                 var alertButton = document.getElementById("alert-div");
