@@ -106,14 +106,13 @@ class Game {
             return response.json();
         })
         .then(function(json) {
-            console.log(json);})
+            alert('Gameboard has been deleted.')})
 
         document.getElementById("container-games").innerHTML = ""
         
         let gameToDelete = User.current.games.find(element => element.id == this.id)
         let indexOfGameToDelete = User.current.games.indexOf(gameToDelete)
         User.current.games.splice(indexOfGameToDelete, 1)
-        console.log(User.current.games)
 
         const gameTitle = document.getElementById("game-title")
         gameTitle.innerText = ""
