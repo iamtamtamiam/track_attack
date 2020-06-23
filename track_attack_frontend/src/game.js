@@ -48,7 +48,7 @@ class Game {
             this.deleteGame(e)
         })
 
-    } //end of rendergamedisplay
+    } 
 
 
     renderGameBoardSounds(){
